@@ -74,7 +74,7 @@ Thanks !
 <img src="screenshots/declareresult.png"/>
 <img src="screenshots/groupchatting.png"/>
 <img src="screenshots/personalchatting.png"/>
-<img src="screenshots/Collegedetails.png"/>
+<img src="screenshots/collagedetails.png"/>
 
 ## About
 
