@@ -32,8 +32,8 @@ Thanks !
 
 ## Installation
 
-* Import this project in your IDE
-* Create new Database and set name as 'Collegedata' after that import 'Collegedata.sql' file (Attached with this folder) in this database.
+* Import this project into your IDE
+* Create new Database and set name as 'collegedata' after that import 'collegedata.sql' file (Attached with this folder) in this database.
 
 ## Database Connection
 
@@ -42,14 +42,14 @@ Thanks !
     * user name="root";
     * password="";
 
-* If you want to change this data then open ".\src\Collegeapplication\common\DataBaseConnection.java"
+* If you want to change this data then open ".\src\collegeapplication\common\DataBaseConnection.java"
 
 
 ## How to Run 
 
 * Start Database Server
 * Start Chat Server
-* Open "src/Collegeapplication/login/LoginPageFrame.java" Run this file
+* Open "src/collegeapplication/login/LoginPageFrame.java" Run this file
 * Admin userid : admin
 * Admin password  : admin
 * Faculty userid  : Faculty id
