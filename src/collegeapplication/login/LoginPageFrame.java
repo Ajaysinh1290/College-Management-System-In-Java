@@ -47,11 +47,12 @@ public class LoginPageFrame extends JFrame implements ActionListener
 	private int facultypanelx=-900,facultypanely=240;
 	private int studentpanelx=500,studentpanely=240;
 	private int underlinelabelx=280,underlinelabelwidth=140;
-	private Timer timer;
+	public Timer timer;
 	private int imagenumber=1;
 	private JLabel bgimagelabel;
 	private JLabel underlinelabel;
 	private JPanel loginbuttonpanel;
+	public Timer imagetimer;
 	/**	
 	 * Launch the application.
 	 */
@@ -81,7 +82,7 @@ public class LoginPageFrame extends JFrame implements ActionListener
 	 */
 	public LoginPageFrame() {
 		timer=new Timer(5,this);
-		Timer imagetimer=new Timer(5000,this);
+		imagetimer=new Timer(5000,this);
 		imagetimer.start();
 		setTitle("Login");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -218,11 +219,11 @@ public class LoginPageFrame extends JFrame implements ActionListener
 		
 		
 	}
-
-	protected void disposethis() {
-		// TODO Auto-generated method stub
-		this.dispose();
-	}
+//
+//	protected void disposethis() {
+//		// TODO Auto-generated method stub
+//		this.dispose();
+//	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
@@ -331,6 +332,7 @@ public class LoginPageFrame extends JFrame implements ActionListener
 	public void setBackgroundImage()
 	{
 		try {
+			System.out.println(imagenumber);
 				Image image=ImageIO.read(new File(".//assets//backgroundimage"+imagenumber+".jpg"));
 			bgimagelabel.setIcon(new ImageIcon(image.getScaledInstance(bgimagelabel.getWidth(), bgimagelabel.getHeight(), Image.SCALE_SMOOTH)));
 			

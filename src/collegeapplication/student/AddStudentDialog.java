@@ -66,7 +66,7 @@ public class AddStudentDialog extends JDialog implements ActionListener {
 	private JComboBox<String> courcenamecombo, semoryearcombo, optionalsubjectcombo, gendercombo;
 	private JSpinner birthdatespinner;
 	private JButton choosefilebutton, addstudentbutton;
-	private File file = new File("./assets/profilepicicon.jpg");
+	private File file ;
 	private String imagepath = null;
 	private JLabel filesize;
 	private AdminMain am;
@@ -419,21 +419,11 @@ public class AddStudentDialog extends JDialog implements ActionListener {
 			fd.setVisible(true);
 			String strfilename = fd.getFile();
 			imagepath = fd.getDirectory() + strfilename;
-			if (!imagepath.isEmpty()) 
+		
+
+			if(fd.getFile()!=null) 
 			{
 				file = new File(imagepath);
-			}
-
-			if (file.getAbsolutePath().contains("null")) 
-			{
-				file = new File("./assets/profilepicicon.jpg");
-			}
-			if (strfilename == null) 
-			{
-
-			} 
-			else 
-			{
 				long bytes = file.length();
 				if (bytes < 1048576) {
 
@@ -444,20 +434,21 @@ public class AddStudentDialog extends JDialog implements ActionListener {
 						filesizenote.setText("Image size < 1024 KB");
 						Image image = ImageIO.read(file).getScaledInstance(100, 120, Image.SCALE_SMOOTH);
 						profilepiclabel.setIcon(new ImageIcon(image));
+						filename.setText(file.getName());	
+
 					} 
 					catch (IOException ex) {
+						file = null;
 						// TODO Auto-generated catch block
-						profilepiclabel.setIcon(new ImageIcon("./assets/profilepicicon.jpg"));
 						filename.setText("No file Choosen");
 						filesize.setText("");
 						filesizenote.setForeground(Color.red);
 						filesizenote.setText("Image Not supported");
 						ex.printStackTrace();
 					}
-					filename.setText(file.getName());
 				} 
 				else {
-					profilepiclabel.setIcon(new ImageIcon("./assets/profilepicicon.jpg"));
+					file = null;
 					filename.setText("No File Choosen");
 					filesize.setText("");
 					filesizenote.setForeground(Color.red);
@@ -620,11 +611,7 @@ public class AddStudentDialog extends JDialog implements ActionListener {
 					int rollnumberexist = new RollNumberData().isExist(s.getCourceCode(), s.getSemorYear(), s.getRollNumber());
 					if (rollnumberexist > 0)
 					{
-						if (student != null && student.getRollNumber()==s.getRollNumber()) 
-						{
-							
-						}
-						else 
+						if (!(student != null && student.getRollNumber()==s.getRollNumber())) 
 						{
 							throw new RollNumberAvailableException();
 						}
@@ -653,13 +640,14 @@ public class AddStudentDialog extends JDialog implements ActionListener {
 						s.setAdmissionDate(student.getAdmissionDate());
 						s.setLastLogin(student.getLastLogin());
 					}
-					if (student != null && file.getAbsolutePath().equals("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Collage Data Management\\.\\assets\\profilepicicon.jpg")) {
-						s.setProfilePic(student.getProfilePic());
-					} 
-					else {
-
+					if (file!=null) {
 						s.setProfilePic(ImageIO.read(file));
-
+					} 
+					else if(student!=null){
+						s.setProfilePic(student.getProfilePic());
+					} else {
+						 file = new File("./assets/profilepicicon.jpg");
+							s.setProfilePic(ImageIO.read(file));
 					}
 					int result = 0;
 					if (sp != null) 

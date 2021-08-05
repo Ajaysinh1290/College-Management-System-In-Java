@@ -58,7 +58,7 @@ public class AddFaculityDialog extends JDialog implements ActionListener
 	private static AddFaculityDialog dialog;
 	private String defaultpicpath="./assets/profilepicicon.jpg";
 	private JButton choosefilebutton,addfacultybutton;
-	private File file=new File(defaultpicpath);
+	private File file;
 	private JLabel filesizenote,filenamelabel,filesize;
 	private JLabel profilepiclabel;
 	private JLabel Errorlabel;
@@ -434,14 +434,10 @@ public class AddFaculityDialog extends JDialog implements ActionListener
 			String filename=fd.getFile();
 			String path=fd.getDirectory();
 			
-			if(filename!=null&&!path.isEmpty())
+			if(filename!=null)
 			{
  				
 				file=new File(path+filename);
-				if(file.getAbsolutePath().contains("null"))
-				{
-					file=new File("./assets/profilepicicon.jpg");
-				}
 				long bytes=file.length();
 				if(bytes<10482376)
 				{
@@ -456,7 +452,7 @@ public class AddFaculityDialog extends JDialog implements ActionListener
 					}
 					catch(Exception exp)
 					{
-						profilepiclabel.setIcon(new ImageIcon(defaultpicpath));
+						file = null;
 	            		filenamelabel.setText("No file Choosen");
 	            		filesize.setText("");
 	            	   filesizenote.setForeground(Color.red);
@@ -466,10 +462,9 @@ public class AddFaculityDialog extends JDialog implements ActionListener
 				}
 				else
 				{
+					file = null;
 					filesizenote.setForeground(Color.red);
 					filesizenote.setText("Image size greater than 1024 KB");
-					profilepiclabel.setIcon(new ImageIcon(defaultpicpath));
-					file=new File(defaultpicpath);
 					filesize.setText("");
 					filenamelabel.setText("No File Choosen");
 				}
@@ -530,13 +525,18 @@ public class AddFaculityDialog extends JDialog implements ActionListener
 					Date date=(Date) birthdatespinner.getValue();
 					f.setBirthDate(new SimpleDateFormat("dd-MM-yyyy").format(date));
 					f.setGender(gendercombo.getSelectedItem()+"");
-					if(faculty!=null && file.getAbsolutePath().equals("C:\\Users\\Sohansinh Rathod\\eclipse-workspace\\Collage Data Management\\.\\assets\\profilepicicon.jpg"))
+					
+					if(file!=null) {
+						f.setProfilePic(ImageIO.read(file));
+					}
+					else if(faculty!=null)
 					{
 						f.setProfilePic(faculty.getProfilePic());
 					}
 					else 
 					{
 					
+						file = new File(defaultpicpath);
 						f.setProfilePic(ImageIO.read(file));
 					}
 					int result=0;

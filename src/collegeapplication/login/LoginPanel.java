@@ -20,7 +20,6 @@ import collegeapplication.admin.AdminData;
 import collegeapplication.admin.AdminMain;
 import collegeapplication.common.HintPasswordField;
 import collegeapplication.common.HintTextField;
-import collegeapplication.common.UserData;
 import collegeapplication.faculty.Faculty;
 import collegeapplication.faculty.FacultyData;
 import collegeapplication.faculty.FacultyMain;
@@ -28,12 +27,6 @@ import collegeapplication.student.Student;
 import collegeapplication.student.StudentData;
 import collegeapplication.student.StudentMain;
 
-/*
- * Title : LoginPanel.java
- * Created by : Ajaysinh Rathod
- * Purpose : For login
- * Mail : ajaysinhrathod1290@gmail.com
- */
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel implements ActionListener
 {
@@ -146,14 +139,20 @@ public class LoginPanel extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent arg0) 
 	{
 		// TODO Auto-generated method stub
+		
 		if(loginprofile.equals("Admin"))
 		{
 			boolean result=new AdminData().checkPassword(useridfield.getText(), passwordfield.getText());
 			if(result==true)
 			{
+				
 				AdminMain am=new AdminMain();
 				am.setVisible(true);
 				am.setLocationRelativeTo(null);
+				loginpageframe.timer.stop();
+				loginpageframe.imagetimer.stop();
+				System.out.println("Timer running "+loginpageframe.timer.isRunning());
+
 				loginpageframe.dispose();
 				
 				
@@ -169,10 +168,11 @@ public class LoginPanel extends JPanel implements ActionListener
 				Faculty f=new FacultyData().getFacultyInfobyUserId(useridfield.getText());
 				if(!f.getCourceCode().equals("Not Assigned"))
 				{
-					new UserData().addFacultyLoginTime(f);
 					FacultyMain fm=new FacultyMain(f);
 					fm.setVisible(true);
 					fm.setLocationRelativeTo(null);
+					loginpageframe.timer.stop();
+					loginpageframe.imagetimer.stop();
 					loginpageframe.dispose();
 				}
 				else
@@ -188,10 +188,11 @@ public class LoginPanel extends JPanel implements ActionListener
 			if(result==true)
 			{
 				Student s=new StudentData().getStudentDetailsByUserId(useridfield.getText());
-				new UserData().addStudentLoginTime(s);
 				StudentMain sm=new StudentMain(s);
 				sm.setVisible(true);
 				sm.setLocationRelativeTo(null);
+				loginpageframe.timer.stop();
+				loginpageframe.imagetimer.stop();
 				loginpageframe.dispose();
 				
 			}

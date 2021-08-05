@@ -12,6 +12,11 @@ import java.sql.*;
 public class DataBaseConnection {
 	
 	static Connection con=null;
+	static final String url="jdbc:mysql://localhost:3306/collegedata";
+	static final String uname="root";
+	static final String password="";
+	
+	
 	public static Connection getConnection()
 	{
 		if(con!=null)
@@ -22,9 +27,7 @@ public class DataBaseConnection {
 		{
 			try
 			{
-				String url="jdbc:mysql://localhost:3306/collegedata";
-				String uname="root";
-				String password="";
+				
 				Class.forName("com.mysql.jdbc.Driver");
 				con=DriverManager.getConnection(url,uname,password);
 				return con;
@@ -41,9 +44,7 @@ public class DataBaseConnection {
 		
 		try
 		{
-			String url="jdbc:mysql://localhost:3306/collegedata";
-			String uname="root";
-			String password="";
+			
 			Class.forName("com.mysql.jdbc.Driver");
 			con=DriverManager.getConnection(url,uname,password);
 			return true;
