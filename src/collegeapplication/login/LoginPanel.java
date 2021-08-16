@@ -168,6 +168,8 @@ public class LoginPanel extends JPanel implements ActionListener
 				Faculty f=new FacultyData().getFacultyInfobyUserId(useridfield.getText());
 				if(!f.getCourceCode().equals("Not Assigned"))
 				{
+				
+					new UserData().addFacultyLoginTime(f);
 					FacultyMain fm=new FacultyMain(f);
 					fm.setVisible(true);
 					fm.setLocationRelativeTo(null);
@@ -188,6 +190,7 @@ public class LoginPanel extends JPanel implements ActionListener
 			if(result==true)
 			{
 				Student s=new StudentData().getStudentDetailsByUserId(useridfield.getText());
+				new UserData().addStudentLoginTime(s);
 				StudentMain sm=new StudentMain(s);
 				sm.setVisible(true);
 				sm.setLocationRelativeTo(null);
