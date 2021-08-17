@@ -23,6 +23,7 @@ import collegeapplication.common.HintTextField;
 import collegeapplication.faculty.Faculty;
 import collegeapplication.faculty.FacultyData;
 import collegeapplication.faculty.FacultyMain;
+import collegeapplication.common.UserData;
 import collegeapplication.student.Student;
 import collegeapplication.student.StudentData;
 import collegeapplication.student.StudentMain;
