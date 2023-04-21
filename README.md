@@ -48,8 +48,8 @@ Thanks !
 ## How to Run 
 
 * Start Database Server
-* Start Chat Server
-* Open "src/collegeapplication/login/LoginPageFrame.java" Run this file
+* Open "src/collegeapplication/chat/Server.java" and Run this file to start chat server
+* Open "src/collegeapplication/login/LoginPageFrame.java" and Run this file to start application
 * Admin userid : admin
 * Admin password  : admin
 * Faculty userid  : Faculty id
